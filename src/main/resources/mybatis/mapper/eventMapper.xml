@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.boot.mapper.EventMapper">
+
+<select id="findAll" resultType="com.spring.boot.dto.EventDTO">
+	SELECT *
+	FROM event
+</select>
+
+<insert id="save" parameterType="com.spring.boot.dto.EventDTO">
+	INSERT INTO event (name, date, content, image)
+	VALUES (#{name}, #{date}, #{content}, #{image} )
+</insert>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM event
+	WHERE id = #{id}
+</delete>
+
+<update id="update" parameterType="com.spring.boot.dto.EventDTO">
+	UPDATE event
+	SET name = #{name}, date = #{date}, content = #{content}, image = #{image}
+	WHERE id = #{id}
+</update>
+
+</mapper>

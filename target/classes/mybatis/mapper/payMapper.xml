@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.boot.mapper.PayMapper">
+	<select id="findByFeeId" parameterType="int" resultType="com.spring.boot.dto.PayDTO">
+		SELECT p.id, p.fee_id, p.member_number, m.name as member_name, p.date
+		FROM pay p
+			INNER JOIN member m
+			ON p.member_number = m.number
+		WHERE fee_id = #{fee_id}
+	</select>
+
+	<select id="countByFeeId" parameterType="int" resultType="int">
+		SELECT count(*)
+		FROM pay
+		WHERE fee_id = #{fee_id}
+	</select>
+
+	<insert id="save" parameterType="com.spring.boot.dto.PayDTO">
+		INSERT INTO pay (fee_id, member_number, date)
+		VALUES (#{fee_id}, #{member_number}, #{date})
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM pay
+		WHERE id = #{id}
+	</delete>
+
+	<update id="update" parameterType="com.spring.boot.dto.PayDTO">
+		UPDATE pay
+		SET fee_id = #{fee_id}, member_number = #{member_number}, date = #{date}
+		WHERE id = #{id}
+	</update>
+
+</mapper>

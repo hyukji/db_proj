@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.boot.mapper.MemberMapper">
+
+<select id="findAll" resultType="com.spring.boot.dto.MemberDTO">
+	SELECT * FROM member
+</select>
+
+<insert id="save" parameterType="com.spring.boot.dto.MemberDTO">
+	INSERT INTO member(number, name, inception, image, category, etc)
+	VALUES (#{number}, #{name}, #{inception}, #{image}, #{category}, #{etc})
+</insert>
+
+<delete id="delete" parameterType="int">
+	DELETE FROM member WHERE number = #{number}
+</delete>
+
+<update id="update" parameterType="com.spring.boot.dto.MemberDTO">
+	UPDATE member
+	SET
+		name = #{name},
+		inception = #{inception},
+		image = #{image},
+		category = #{category},
+		etc = #{etc}
+	WHERE
+		number = #{number}
+</update>
+
+</mapper>
