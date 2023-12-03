@@ -9,6 +9,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT * FROM member
 </select>
 
+<select id="findByName" parameterType="java.lang.String" resultType="com.spring.boot.dto.MemberDTO">
+	SELECT *
+	FROM member
+	where name = #{searchContent}
+</select>
+<select id="findByNumber" parameterType="java.lang.String" resultType="com.spring.boot.dto.MemberDTO">
+	SELECT *
+	FROM member
+	where number = #{searchContent}
+</select>
+<select id="findByInception" parameterType="java.lang.String" resultType="com.spring.boot.dto.MemberDTO">
+	SELECT *
+	FROM member
+	where inception = #{searchContent}
+</select>
+
 <insert id="save" parameterType="com.spring.boot.dto.MemberDTO">
 	INSERT INTO member(number, name, inception, image, category, etc)
 	VALUES (#{number}, #{name}, #{inception}, #{image}, #{category}, #{etc})

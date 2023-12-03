@@ -81,12 +81,6 @@ public class Controller {
 		return "menu";
 	}
 
-	@RequestMapping(value = "/memberManager")
-	public String memberManager(HttpServletRequest request) throws Exception{
-		List<MemberDTO> members = memberService.findAll();
-		request.setAttribute("members", members);
-		return "memberManager";
-	}
 	@RequestMapping(value = "/eventManager")
 	public String eventManager(HttpSession session) throws Exception{
 		return "eventManager";
@@ -96,16 +90,6 @@ public class Controller {
 		return "moneyManager";
 	}
 
-	@RequestMapping(value = "/memberDeleteAction")
-	public String memberDeleteAction(@RequestParam("number") int number, HttpServletRequest request) throws Exception{
-		memberService.delete(number);
-		return memberManager(request);
-	}
-	@RequestMapping(value = "/memberRegisterAction")
-	public String memberRegisterAction(MemberDTO member, HttpServletRequest request) throws Exception{
-		memberService.save(member);
-		return memberManager(request);
-	}
 
 
 
