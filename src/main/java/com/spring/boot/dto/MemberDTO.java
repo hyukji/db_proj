@@ -18,4 +18,16 @@ public class MemberDTO {
     private String category;
     private String etc;
 
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+                "number=" + number +
+                ", name='" + name + '\'' +
+                ", inception=" + inception +
+                ", image='" + image + '\'' +
+                ", category='" + category + '\'' +
+                ", etc='" + etc + '\'' +
+                '}';
+    }
 }
+

@@ -2,13 +2,18 @@ package com.spring.boot.controller;
 
 
 import com.spring.boot.dto.FeeDTO;
+import com.spring.boot.dto.MemberDTO;
 import com.spring.boot.service.FeeService;
 import com.spring.boot.service.MemberService;
 import com.spring.boot.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -20,65 +25,53 @@ public class Controller {
 	private FeeService feeService;
 	@Autowired
 	private PayService payService;
-	
-	@RequestMapping(value = "/")
-	public ModelAndView index() throws Exception{
-//		System.out.println(payService.findByFeeId(2));
-//
-//		FeeDTO fee2 = new FeeDTO("fee2", 200, LocalDate.of(1111,1,1));
-//		PayDTO pay11 = new PayDTO(1, 1, LocalDate.of(1111,1,1));
-//		PayDTO pay12 = new PayDTO(1, 2, LocalDate.of(1111,1,1));
-//		PayDTO pay21 = new PayDTO(2, 1, LocalDate.of(1111,1,1));
-//		PayDTO pay22 = new PayDTO(2, 2, LocalDate.of(1111,1,1));
-//		feeService.save(fee);
-//		feeService.save(fee2);
-//		payService.save(pay11);
-//		payService.save(pay12);
-//		payService.save(pay21);
-//		payService.save(pay22);
-//
-//		System.out.println(feeService.findAll());
-//		System.out.println(payService.findByFeeId(1));
-//		System.out.println(payService.findByFeeId(2));
-//
-		List<FeeDTO> fees = feeService.findAll();
-		FeeDTO fee = fees.get(0);
-		int i = feeService.sumPayAmount(fee);
-		System.out.println("i = " + i);
 
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index"); //jsp(html)로 갈때는 setViewName // class로 갈때는 setView
-		
-		return mav;
+
+	@RequestMapping(value = "/")
+	public String index(HttpSession session) throws Exception{
+		if (session.getAttribute("login") != null) {
+			return "redirect:/main";
+		}
+		return "redirect:/login";
 	}
 
-//	@RequestMapping(value = "/created.action", method = RequestMethod.GET)
-//	public ModelAndView created() throws Exception{
-//
-//		ModelAndView mav = new ModelAndView();
-//
-//		mav.setViewName("bbs/created"); //jsp(html)로 갈때는 setViewName // class로 갈때는 setView
-//
-//		return mav;
-//	}
+	@RequestMapping(value = "/login")
+	public String login(HttpSession session) throws Exception{
+		return "index";
+	}
 
-//	@RequestMapping(value = "/created.action", method = RequestMethod.POST)
-//	public ModelAndView created_ok(BoardDTO dto, HttpServletRequest request) throws Exception{
-//
-//		ModelAndView mav = new ModelAndView();
-//
-//		int maxNum = boardService.maxNum();
-//
-//		dto.setNum(maxNum + 1);
-//		dto.setIpAddr(request.getRemoteAddr());
-//
-//		boardService.insertData(dto);
-//
-//		mav.setViewName("redirect:/list.action");
-//
-//		return mav;
-//
-//	}
+	@PostMapping(value = "/loginAction")
+	public String login(MemberDTO member, HttpSession session) throws Exception{
+		MemberDTO findMember = memberService.login(member);
+		if (findMember == null) {
+			// TODO : 로그인 실패 경고창?
+			return "redirect:/login";
+		}
+		System.out.println(findMember);
+		session.setAttribute("login", findMember);
+		return "redirect:/";
+	}
+	@RequestMapping(value = "/main")
+	public String main(HttpSession session) throws Exception{
+		return "main";
+	}
+	@RequestMapping(value = "/menu")
+	public String menu(HttpSession session) throws Exception{
+		return "menu";
+	}
+
+	@RequestMapping(value = "/memberManager")
+	public String memberManager(HttpSession session) throws Exception{
+		return "memberManager";
+	}
+	@RequestMapping(value = "/eventManager")
+	public String eventManager(HttpSession session) throws Exception{
+		return "eventManager";
+	}
+	@RequestMapping(value = "/moneyManager")
+	public String moneyManager(HttpSession session) throws Exception{
+		return "moneyManager";
+	}
 //
 //	@RequestMapping(value = "/list.action",
 //			method = {RequestMethod.GET,RequestMethod.POST})
@@ -318,5 +311,37 @@ public class Controller {
 //		return mav;
 //
 //	}
+
+
+	@RequestMapping(value = "/prac")
+	public ModelAndView index() throws Exception{
+//		System.out.println(payService.findByFeeId(2));
+//
+//		FeeDTO fee2 = new FeeDTO("fee2", 200, LocalDate.of(1111,1,1));
+//		PayDTO pay11 = new PayDTO(1, 1, LocalDate.of(1111,1,1));
+//		PayDTO pay12 = new PayDTO(1, 2, LocalDate.of(1111,1,1));
+//		PayDTO pay21 = new PayDTO(2, 1, LocalDate.of(1111,1,1));
+//		PayDTO pay22 = new PayDTO(2, 2, LocalDate.of(1111,1,1));
+//		feeService.save(fee);
+//		feeService.save(fee2);
+//		payService.save(pay11);
+//		payService.save(pay12);
+//		payService.save(pay21);
+//		payService.save(pay22);
+//
+//		System.out.println(feeService.findAll());
+//		System.out.println(payService.findByFeeId(1));
+//		System.out.println(payService.findByFeeId(2));
+//
+		List<FeeDTO> fees = feeService.findAll();
+		FeeDTO fee = fees.get(0);
+		int i = feeService.sumPayAmount(fee);
+		System.out.println("i = " + i);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("index"); //jsp(html)로 갈때는 setViewName // class로 갈때는 setView
+
+		return mav;
+	}
 		
 }

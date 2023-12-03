@@ -12,4 +12,5 @@ public interface MemberMapper {
     void delete(int number);
     void update(MemberDTO member);
 
+    MemberDTO find(MemberDTO member);
 }

@@ -29,10 +29,10 @@
 		<div class="subtitle" style="width:100px;position:absolute; top:35%; left:50%; margin: -50px 0 0 -50px;" >회원 로그인</div>
 		<div style="padding:5px; width:100%"></div>
 		<div style = "position:absolute; top:50%; left:50%; margin: -50px 0 0 -50px;">
-		<form style = "position:absolute; top:50%; left:50%; margin: -50px 0 0 -50px;" action="LoginAction.jsp" method="post">
-			<input type="text" name="userID" placeholder="ID">
+		<form style = "position:absolute; top:50%; left:50%; margin: -50px 0 0 -50px;" action="loginAction" method="post" path="name">
+			<input type="text" name="name" placeholder="ID">
 			<div style="padding:1px;"></div>
-			<input type="password" name="userPW" placeholder="PW">
+			<input type="password" name="number" placeholder="PW">
 			<div style="padding:5px;"></div>
 			<input style = "width:100px; left-margin:auto; right-margin:auto"type="submit" value="로그인">
 		</form>
