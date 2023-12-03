@@ -76,7 +76,7 @@
 			<p class="card-text"><small>총무부 부원</small></p>
 			<div class="row">
 				<div class="col-12 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?memberID=">삭제</a>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,7 @@
 			<p class="card-text"><small>홍보부 부장</small></p>
 			<div class="row">
 				<div class="col-12 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?memberID=">삭제</a>
 				</div>
 			</div>
 		</div>
