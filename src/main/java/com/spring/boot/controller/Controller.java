@@ -9,13 +9,16 @@ import com.spring.boot.service.FeeService;
 import com.spring.boot.service.MemberService;
 import com.spring.boot.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Member;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -79,7 +82,9 @@ public class Controller {
 	}
 
 	@RequestMapping(value = "/memberManager")
-	public String memberManager(HttpSession session) throws Exception{
+	public String memberManager(HttpServletRequest request) throws Exception{
+		List<MemberDTO> members = memberService.findAll();
+		request.setAttribute("members", members);
 		return "memberManager";
 	}
 	@RequestMapping(value = "/eventManager")
@@ -90,6 +95,20 @@ public class Controller {
 	public String moneyManager(HttpSession session) throws Exception{
 		return "moneyManager";
 	}
+
+	@RequestMapping(value = "/memberDeleteAction")
+	public String memberDeleteAction(@RequestParam("number") int number, HttpServletRequest request) throws Exception{
+		memberService.delete(number);
+		return memberManager(request);
+	}
+	@RequestMapping(value = "/memberRegisterAction")
+	public String memberRegisterAction(MemberDTO member, HttpServletRequest request) throws Exception{
+		memberService.save(member);
+		return memberManager(request);
+	}
+
+
+
 
 //	@RequestMapping(value = "/list.action",
 //			method = {RequestMethod.GET,RequestMethod.POST})
