@@ -45,8 +45,8 @@ public class Controller {
 		FeeDTO fee = fees.get(0);
 		int i = feeService.sumPayAmount(fee);
 		System.out.println("i = " + i);
-		ModelAndView mav = new ModelAndView();
 
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index"); //jsp(html)로 갈때는 setViewName // class로 갈때는 setView
 		
 		return mav;
