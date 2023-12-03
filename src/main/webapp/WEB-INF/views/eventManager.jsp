@@ -75,7 +75,7 @@
 			<p class="card-text"><small>달빛제에 참여하여 커피 및 음료 판매</small></p>
 			<div class="row">
 				<div class="col-12 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?eventID=">삭제</a>
 				</div>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 			<p class="card-text"><small>드립커피 추출법 및 추출 도구 실습</small></p>
 			<div class="row">
 				<div class="col-12 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationID=">삭제</a>
+					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?eventID=">삭제</a>
 				</div>
 			</div>
 		</div>
