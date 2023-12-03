@@ -9,13 +9,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT * FROM member
 </select>
 
-
-<select id="find" parameterType="com.spring.boot.dto.MemberDTO" resultType="com.spring.boot.dto.MemberDTO">
-	SELECT *
-	FROM member
-	WHERE name = #{name} and number = #{number}
-</select>
-
 <insert id="save" parameterType="com.spring.boot.dto.MemberDTO">
 	INSERT INTO member(number, name, inception, image, category, etc)
 	VALUES (#{number}, #{name}, #{inception}, #{image}, #{category}, #{etc})

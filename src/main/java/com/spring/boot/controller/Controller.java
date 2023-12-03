@@ -1,8 +1,10 @@
 package com.spring.boot.controller;
 
 
+import com.spring.boot.dto.AdminDTO;
 import com.spring.boot.dto.FeeDTO;
 import com.spring.boot.dto.MemberDTO;
+import com.spring.boot.service.AdminService;
 import com.spring.boot.service.FeeService;
 import com.spring.boot.service.MemberService;
 import com.spring.boot.service.PayService;
@@ -18,14 +20,15 @@ import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class Controller {
-	
+
+	@Autowired
+	private AdminService adminService;
 	@Autowired
 	private MemberService memberService;
 	@Autowired
 	private FeeService feeService;
 	@Autowired
 	private PayService payService;
-
 
 	@RequestMapping(value = "/")
 	public String index(HttpSession session) throws Exception{
@@ -41,16 +44,31 @@ public class Controller {
 	}
 
 	@PostMapping(value = "/loginAction")
-	public String login(MemberDTO member, HttpSession session) throws Exception{
-		MemberDTO findMember = memberService.login(member);
-		if (findMember == null) {
+	public String login(AdminDTO admin, HttpSession session) throws Exception{
+		AdminDTO foundAdmin = adminService.login(admin);
+		if (foundAdmin == null) {
 			// TODO : 로그인 실패 경고창?
 			return "redirect:/login";
 		}
-		System.out.println(findMember);
-		session.setAttribute("login", findMember);
+		System.out.println(foundAdmin);
+		session.setAttribute("login", foundAdmin);
 		return "redirect:/";
 	}
+
+	@PostMapping(value = "/join")
+	public String join() throws Exception{
+		return "UserJoin";
+	}
+
+	@PostMapping(value = "/joinAction")
+	public String joinAction(AdminDTO admin, HttpSession session) throws Exception{
+		System.out.println(admin);
+		adminService.save(admin);
+
+		session.setAttribute("login", admin);
+		return "redirect:/";
+	}
+
 	@RequestMapping(value = "/main")
 	public String main(HttpSession session) throws Exception{
 		return "main";
@@ -72,7 +90,7 @@ public class Controller {
 	public String moneyManager(HttpSession session) throws Exception{
 		return "moneyManager";
 	}
-//
+
 //	@RequestMapping(value = "/list.action",
 //			method = {RequestMethod.GET,RequestMethod.POST})
 //	public ModelAndView list(BoardDTO dto, HttpServletRequest request) throws Exception{

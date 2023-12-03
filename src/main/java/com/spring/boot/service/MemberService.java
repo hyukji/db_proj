@@ -29,7 +29,4 @@ public class MemberService {
         memberMapper.update(member);
     }
 
-    public MemberDTO login(MemberDTO member) {
-        return memberMapper.find(member);
-    }
 }

@@ -30,15 +30,15 @@
 		<div style="padding:5px; width:100%"></div>
 		<div style = "position:absolute; top:50%; left:50%; margin: -50px 0 0 -50px;">
 		<form style = "position:absolute; top:50%; left:50%; margin: -50px 0 0 -50px;" action="loginAction" method="post" path="name">
-			<input type="text" name="name" placeholder="ID">
+			<input type="text" name="id" placeholder="ID">
 			<div style="padding:1px;"></div>
-			<input type="password" name="number" placeholder="PW">
+			<input type="password" name="password" placeholder="PW">
 			<div style="padding:5px;"></div>
 			<input style = "width:100px; left-margin:auto; right-margin:auto"type="submit" value="로그인">
 		</form>
 		</div>
 		<div style="width:100px; position:absolute; top:65%; left:50%; margin: -50px 0 0 -50px;">
-			<form action="UserJoin.jsp" method="post">
+			<form action="join" method="post">
 				<input type="submit" value="회원가입">
 			</form>
 		</div>
