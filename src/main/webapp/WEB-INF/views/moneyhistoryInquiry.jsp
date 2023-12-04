@@ -55,38 +55,48 @@
 	<div class="form-group col-sm-6">
 	<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal" style="font-weight:bold">납부 내역 추가</a>
 	</div>
-
-    <table class="table table-striped">
+	<table id="myTable" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">번호</th>
-             	<th scope="col">이름</th>
-              	<th scope="col">입금액</th>
-              	<th scope="col">비고</th>
+                <th scope="col">이름</th>
+                <th scope="col">금액(원)</th>
+                <th scope="col">비고</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">1</th>
+                <td scope="row">1</td>
                 <td>김디지</td>
                 <td>10000</td>
                 <td></td>
             </tr>
             <tr>
-                <th scope="row">2</th>
+                <td scope="row">2</td>
                 <td>박달구</td>
                 <td>10000</td>
                 <td></td>
             </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>이세븐</td>
-                <td>10000</td>
-                <td></td>
-            </tr>
+            <!-- Add more rows as needed -->
         </tbody>
-        
     </table>
+
+    <script>
+    $(document).ready(function(){
+        var sum = 0;
+        $("#myTable tbody tr").each(function(){
+            var value = parseInt($(this).find('td').eq(2).text());
+            if (!isNaN(value)) {
+                sum += value;
+            }
+        });
+        $("#sum").text( "납부 총액 : "+ sum + "원");
+    });
+    </script>
+	
+    <div class="form-group col-sm-6">
+		<div style = "font-size:15px; font-weight:bold" id="sum"></div>
+	</div>
     
     <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
@@ -101,16 +111,16 @@
 			<form action="./moneyhistoryAction.jsp" method="post">
 				<div class="form-row">
 				<div class="form-group col-sm-6">
-				<label>학생명</label>
+				<label>이름</label>
 				<input type="text" name="studentName" class="form-control" maxlength="20">
 				</div>
 				<div class="form-group col-sm-6">
-				<label>입금액</label>
+				<label>금액</label>
 				<input type="text" name="studentNumber" class="form-control" maxlength="20">
 				</div>
 				</div>
 			<div class="form-group">
-				<label>비고 사항</label>
+				<label>비고</label>
 				<textarea name="memberContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
 				</div>
 				<div class="modal-footer">
