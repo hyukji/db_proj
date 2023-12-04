@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="./css/custom.css">
 	<style type="text/css">
 	 a:link { color: black; text-decoration: none;}	
-	 a:visited { color: black; text-decoration: none;}	
+	 a:visited { color: #0064CD; text-decoration: none;}	
 	 a:hover { color: grey; text-decoration: none;}
 	</style>
 	<title>2023 DGIST DATABASE PROJECT</title>
@@ -48,57 +48,69 @@
 			</ul>
 		</div>
 	</nav>
-	
 	<div class="form-group col-sm-12"></div>
+	<div class="form-group col-sm-12">
+		<div style = "font-size:18px; font-weight:bold" >9월 회비 납부 내역&nbsp;</div>
+	</div>
 	<div class="form-group col-sm-6">
-		<section style="height:90px">
-			<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal" style="font-weight:bold">신규 등록</a>
-		</section>
+	<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal" style="font-weight:bold">납부 내역 추가</a>
 	</div>
-		<!--  카드 보드 형태로 월 구분-->
-	<div class="card bg-light mt-3">
-		<div class="card-header bg-light">
-			<div class="row">
-				<div class="col-8 text-left">9월 회비 납부&nbsp;</div>
-				</div>
-		</div>
-		<div class="card-body">
-			<div class="row">
-				<div class="col-1 text-right">
-				  <!-- Trigger the modal with a button -->
-				  <a class="btn btn-info" href="./moneyhistoryInquiry.jsp" role="button">열람</a>
-				
-				</div>
-				<div class="col-11 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?moneyID=">삭제</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	
-		<!--  등록 모달창 -->
-	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">번호</th>
+             	<th scope="col">이름</th>
+              	<th scope="col">입금액</th>
+              	<th scope="col">비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>김디지</td>
+                <td>10000</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>박달구</td>
+                <td>10000</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>이세븐</td>
+                <td>10000</td>
+                <td></td>
+            </tr>
+        </tbody>
+        
+    </table>
+    
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 		<div class="modal-content">
 		<div class="modal-header">
-			<h5 class="modal-title" id="modal">부원 등록</h5>
+			<h5 class="modal-title" id="modal">납부 내역 등록</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
 		<div class="modal-body">
-			<form action="./moneyRegisterAction.jsp" method="post">
+			<form action="./moneyhistoryAction.jsp" method="post">
 				<div class="form-row">
-				<div class="form-group col-sm-12">
-				<label>회비 구분명</label>
+				<div class="form-group col-sm-6">
+				<label>학생명</label>
 				<input type="text" name="studentName" class="form-control" maxlength="20">
 				</div>
+				<div class="form-group col-sm-6">
+				<label>입금액</label>
+				<input type="text" name="studentNumber" class="form-control" maxlength="20">
 				</div>
-			
+				</div>
 			<div class="form-group">
-				<label>기타 비고 사항</label>
+				<label>비고 사항</label>
 				<textarea name="memberContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
 				</div>
 				<div class="modal-footer">
