@@ -74,10 +74,6 @@ public class Controller {
 		return "menu";
 	}
 
-	@RequestMapping(value = "/moneyManager")
-	public String moneyManager(HttpSession session) throws Exception{
-		return "moneyManager";
-	}
 
 
 //	@RequestMapping(value = "/list.action",

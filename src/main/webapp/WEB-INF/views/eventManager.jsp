@@ -94,26 +94,6 @@
 	<%
 		}
 	%>
-<%--	--%>
-<%--	<div class="card bg-light mt-3">--%>
-<%--		<div class="card-header bg-light">--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-8 text-left">2023 2학기 1차 교육&nbsp;</div>--%>
-<%--					<div class="col-4 text-right">--%>
-<%--					<span style="color: blue;">2023.09.05</span>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-<%--		</div>--%>
-<%--		<div class="card-body">--%>
-<%--			<p class="card-text"><small>드립커피 추출법 및 추출 도구 실습</small></p>--%>
-<%--			<div class="row">--%>
-<%--				<div class="col-12 text-right">--%>
-<%--					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?eventID=">삭제</a>--%>
-<%--				</div>--%>
-<%--			</div>--%>
-<%--		</div>--%>
-<%--	</div>--%>
-	
 	<!--  등록 모달창 -->
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">

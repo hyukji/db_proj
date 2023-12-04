@@ -11,8 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <insert id="save" parameterType="com.spring.boot.dto.FeeDTO">
-	INSERT INTO fee (name, price, date)
-	VALUES (#{name}, #{price}, #{date})
+	INSERT INTO fee (name, price, etc)
+	VALUES (#{name}, #{price}, #{etc})
 </insert>
 
 <delete id="delete" parameterType="int">
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <update id="update" parameterType="com.spring.boot.dto.FeeDTO">
 	UPDATE fee
-	SET name = #{name}, price = #{price}, date = #{date}
+	SET name = #{name}, price = #{price}, etc = #{etc}
 	WHERE id = #{id}
 </update>
 

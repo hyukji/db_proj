@@ -19,6 +19,7 @@ public class PayDTO {
     private int fee_id;
     private int member_number;
     private String member_name;
+    private int price;
     private LocalDate date;
 
     public PayDTO(int fee_id, int member_number, LocalDate date) {

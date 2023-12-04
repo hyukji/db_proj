@@ -18,12 +18,12 @@ public class FeeDTO {
     private int id;
     private String name;
     private int price;
-    private LocalDate date;
+    private String etc;
 
-    public FeeDTO(String name, int price, LocalDate date) {
+    public FeeDTO(String name, int price, String etc) {
         this.name = name;
         this.price = price;
-        this.date = date;
+        this.etc = etc;
     }
 
 
