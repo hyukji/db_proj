@@ -2,18 +2,13 @@ package com.spring.boot.controller;
 
 
 import com.spring.boot.dto.AdminDTO;
+import com.spring.boot.dto.EventDTO;
 import com.spring.boot.dto.FeeDTO;
 import com.spring.boot.dto.MemberDTO;
-import com.spring.boot.service.AdminService;
-import com.spring.boot.service.FeeService;
-import com.spring.boot.service.MemberService;
-import com.spring.boot.service.PayService;
+import com.spring.boot.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +21,6 @@ public class Controller {
 
 	@Autowired
 	private AdminService adminService;
-	@Autowired
-	private MemberService memberService;
 	@Autowired
 	private FeeService feeService;
 	@Autowired
@@ -81,17 +74,10 @@ public class Controller {
 		return "menu";
 	}
 
-	@RequestMapping(value = "/eventManager")
-	public String eventManager(HttpSession session) throws Exception{
-		return "eventManager";
-	}
 	@RequestMapping(value = "/moneyManager")
 	public String moneyManager(HttpSession session) throws Exception{
 		return "moneyManager";
 	}
-
-
-
 
 
 //	@RequestMapping(value = "/list.action",

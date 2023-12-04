@@ -1,5 +1,6 @@
 package com.spring.boot.service;
 
+import com.spring.boot.MemberOption;
 import com.spring.boot.dto.EventDTO;
 import com.spring.boot.dto.MemberDTO;
 import com.spring.boot.mapper.EventMapper;
@@ -28,5 +29,16 @@ public class EventService {
 
     public void update(EventDTO event) {
         eventMapper.update(event);
+    }
+
+    public List<EventDTO> findByOption(String searchDivide, String searchContent) {
+        switch (searchDivide) {
+            case "행사명":
+                return eventMapper.findByName(searchContent);
+            case "날짜":
+                return eventMapper.findByDate(searchContent);
+            default:
+                throw new IllegalStateException("Unexpected value: " + searchDivide);
+        }
     }
 }

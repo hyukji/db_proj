@@ -1,5 +1,8 @@
+<%@ page import="jdk.jfr.Event" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.spring.boot.dto.EventDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,54 +53,66 @@
 	</nav>
 	
 	<section style="height:90px">
-		<form method="get" action="./eventManager.jsp" class="form-inline mt-3">
+		<form method="post" action="eventSearch" class="form-inline mt-3">
 		<select name="searchDivide" class="form-control mx-1 mt-2">
 		<option value="행사명">행사명</option>
 		<option value="날짜">날짜</option>
 		</select>
-		<input type="text" name="search" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
+		<input type="text" name="searchContent" class="form-control mx-1 mt-2" placeholder="내용을 입력하세요.">
 		<button type="submit" class="btn btn-primary mx-1 mt-2">검색</button>
 		<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal" style="font-weight:bold">등록하기</a>
 		</form>
 	</section>
-	
-	<!--  카드 보드 형태로 이벤트 나열-->	
+
+
+	<%
+		List<EventDTO> events = (List<EventDTO>) request.getAttribute("events");
+		for (EventDTO event : events) {
+	%>
+
 	<div class="card bg-light mt-3">
 		<div class="card-header bg-light">
 			<div class="row">
-				<div class="col-8 text-left">2023 달빛제 부스운영&nbsp;</div>
+
+				<div class="col-8 text-left"><%= event.getName() %>&nbsp;</div>
 					<div class="col-4 text-right">
-					<span style="color: blue;">2023.11.02</span>
+					<span style="color: blue;"><%= event.getDateFormat() %></span>
 					</div>
 				</div>
 		</div>
 		<div class="card-body">
-			<p class="card-text"><small>달빛제에 참여하여 커피 및 음료 판매</small></p>
+			<p class="card-text"><small><%= event.getContent() %></small></p>
 			<div class="row">
 				<div class="col-12 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?eventID=">삭제</a>
+					<a onclick="return confirm('삭제하시겠습니까?')" href="./eventDeleteAction?id=<%= event.getId() %>">삭제</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="card bg-light mt-3">
-		<div class="card-header bg-light">
-			<div class="row">
-				<div class="col-8 text-left">2023 2학기 1차 교육&nbsp;</div>
-					<div class="col-4 text-right">
-					<span style="color: blue;">2023.09.05</span>
-					</div>
-				</div>
-		</div>
-		<div class="card-body">
-			<p class="card-text"><small>드립커피 추출법 및 추출 도구 실습</small></p>
-			<div class="row">
-				<div class="col-12 text-right">
-					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?eventID=">삭제</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+	<%
+		}
+	%>
+<%--	--%>
+<%--	<div class="card bg-light mt-3">--%>
+<%--		<div class="card-header bg-light">--%>
+<%--			<div class="row">--%>
+<%--				<div class="col-8 text-left">2023 2학기 1차 교육&nbsp;</div>--%>
+<%--					<div class="col-4 text-right">--%>
+<%--					<span style="color: blue;">2023.09.05</span>--%>
+<%--					</div>--%>
+<%--				</div>--%>
+<%--		</div>--%>
+<%--		<div class="card-body">--%>
+<%--			<p class="card-text"><small>드립커피 추출법 및 추출 도구 실습</small></p>--%>
+<%--			<div class="row">--%>
+<%--				<div class="col-12 text-right">--%>
+<%--					<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?eventID=">삭제</a>--%>
+<%--				</div>--%>
+<%--			</div>--%>
+<%--		</div>--%>
+<%--	</div>--%>
 	
 	<!--  등록 모달창 -->
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
@@ -110,22 +125,22 @@
 			</button>
 		</div>
 		<div class="modal-body">
-			<form action="eventRegisterAction.jsp" method="post">
+			<form action="eventRegisterAction" method="post">
 				<div class="form-row">
 				<div class="form-group col-sm-6">
 				<label>행사명</label>
-				<input type="text" name="eventName" class="form-control" style="width:300px">
+				<input type="text" name="name" class="form-control" style="width:300px">
 				</div>
 				</div>
 				<div class="form-row">
 				<div class="form-group col-sm-6">
 				<label>날짜</label>
-				<input type="text" name="eventDate" class="form-control" style="width:300px">
+				<input type="date" name="date" class="form-control" style="width:300px">
 				</div>
 				</div>
 			<div class="form-group">
 				<label>행사 내용</label>
-				<textarea name="eventContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
+				<textarea name="content" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>

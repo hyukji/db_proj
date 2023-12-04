@@ -11,4 +11,8 @@ public interface EventMapper {
     void save(EventDTO event);
     void delete(int number);
     void update(EventDTO event);
+
+    List<EventDTO> findByName(String searchContent);
+
+    List<EventDTO> findByDate(String searchContent);
 }

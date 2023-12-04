@@ -10,6 +10,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	FROM event
 </select>
 
+<select id="findByName" resultType="com.spring.boot.dto.EventDTO">
+	SELECT *
+	FROM event
+	where name = #{searchContent}
+</select>
+<select id="findByDate" resultType="com.spring.boot.dto.EventDTO">
+	SELECT *
+	FROM event
+	where date = #{searchContent}
+</select>
 <insert id="save" parameterType="com.spring.boot.dto.EventDTO">
 	INSERT INTO event (name, date, content, image)
 	VALUES (#{name}, #{date}, #{content}, #{image} )
