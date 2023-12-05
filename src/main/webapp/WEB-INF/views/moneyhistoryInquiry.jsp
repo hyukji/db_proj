@@ -1,5 +1,8 @@
+<%@ page import="com.spring.boot.dto.PayDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.spring.boot.dto.FeeDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +21,26 @@
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 	<script src="./js/popper.min.js"></script>
-	
+
+
+	<%
+		FeeDTO fee = (FeeDTO) request.getAttribute("fee");
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="main.jsp">동아리 관리 웹 <small> - 회비 관리</small></a>
+		<a class="navbar-brand" href="main">동아리 관리 웹 <small> - 회비 관리</small></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="memberManager.jsp">회원 관리</a>
+					<a class="nav-link" href="memberManager">회원 관리</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="eventManager.jsp">연혁 및 이벤트 관리</a>
+					<a class="nav-link" href="eventManager">연혁 및 이벤트 관리</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="moneyManager.jsp">회비 관리</a>
+					<a class="nav-link" href="moneyManager">회비 관리</a>
 				</li> 
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
@@ -42,7 +49,7 @@
 					<div class="dropdown-menu" aria-labelledby="dropdown">
 						<a class="dropdown-item" href="#">계정관리</a>
 						<a class="dropdown-item" href="#">계정삭제</a>
-						<a class="dropdown-item" href="./index.jsp">로그아웃</a>
+						<a class="dropdown-item" href="./index">로그아웃</a>
 					</div>
 				</li>
 			</ul>
@@ -50,11 +57,12 @@
 	</nav>
 	<div class="form-group col-sm-12"></div>
 	<div class="form-group col-sm-12">
-		<div style = "font-size:18px; font-weight:bold" >9월 회비 납부 내역&nbsp;</div>
+		<div style = "font-size:18px; font-weight:bold" ><%= fee.getName() %>&nbsp;</div>
 	</div>
 	<div class="form-group col-sm-6">
 	<a class="btn btn-primary mx-1 mt-2" data-toggle="modal" href="#registerModal" style="font-weight:bold">납부 내역 추가</a>
 	</div>
+
 	<table id="myTable" class="table table-striped">
         <thead>
             <tr>
@@ -65,21 +73,28 @@
             </tr>
         </thead>
         <tbody>
+
+			<%
+				List<PayDTO> pays = (List<PayDTO>) request.getAttribute("pays");
+				int id = 0;
+				for (PayDTO pay : pays) {
+					id += 1;
+					String etc = (fee.getPrice() <= pay.getPrice()) ? "완납" : "미납";
+			%>
             <tr>
-                <td scope="row">1</td>
-                <td>김디지</td>
-                <td>10000</td>
-                <td></td>
+                <td scope="row"><%= id %></td>
+                <td><%= pay.getMember_name() %></td>
+                <td><%= pay.getPrice() %></td>
+                <td><%= etc %></td>
             </tr>
-            <tr>
-                <td scope="row">2</td>
-                <td>박달구</td>
-                <td>10000</td>
-                <td></td>
-            </tr>
+
+			<%
+				}
+			%>
             <!-- Add more rows as needed -->
         </tbody>
     </table>
+
 
     <script>
     $(document).ready(function(){
@@ -108,20 +123,21 @@
 			</button>
 		</div>
 		<div class="modal-body">
-			<form action="./moneyhistoryAction.jsp" method="post">
+			<form action="payRegister/<%= fee.getId() %>" method="post">
 				<div class="form-row">
 				<div class="form-group col-sm-6">
-				<label>이름</label>
-				<input type="text" name="studentName" class="form-control" maxlength="20">
+				<label>학번</label>
+				<input type="text" name="member_number" class="form-control" maxlength="20">
 				</div>
 				<div class="form-group col-sm-6">
 				<label>금액</label>
-				<input type="text" name="studentNumber" class="form-control" maxlength="20">
+				<input type="text" name="price" class="form-control" maxlength="20">
 				</div>
 				</div>
 			<div class="form-group">
 				<label>비고</label>
-				<textarea name="memberContent" class="form-control" maxlength="2048" style="height: 180px;"></textarea>
+				<textarea name="etc" class="form-control" maxlength="2048" style="height: 180px;">
+				</textarea>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>

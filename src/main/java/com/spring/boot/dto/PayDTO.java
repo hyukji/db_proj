@@ -20,21 +20,18 @@ public class PayDTO {
     private int member_number;
     private String member_name;
     private int price;
+    private String etc;
     private LocalDate date;
-
-    public PayDTO(int fee_id, int member_number, LocalDate date) {
-        this.fee_id = fee_id;
-        this.member_number = member_number;
-        this.date = date;
-    }
 
     @Override
     public String toString() {
         return "PayDTO{" +
                 "id=" + id +
-                ", feeId=" + fee_id +
-                ", memberNumber=" + member_number +
-                ", memberName='" + member_name + '\'' +
+                ", fee_id=" + fee_id +
+                ", member_number=" + member_number +
+                ", member_name='" + member_name + '\'' +
+                ", price=" + price +
+                ", etc='" + etc + '\'' +
                 ", date=" + date +
                 '}';
     }

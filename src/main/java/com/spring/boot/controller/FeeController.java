@@ -2,8 +2,10 @@ package com.spring.boot.controller;
 
 import com.spring.boot.dto.FeeDTO;
 import com.spring.boot.dto.MemberDTO;
+import com.spring.boot.dto.PayDTO;
 import com.spring.boot.service.EventService;
 import com.spring.boot.service.FeeService;
+import com.spring.boot.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,10 @@ public class FeeController {
 
     @Autowired
     private FeeService feeService;
+
+    @Autowired
+    private PayService payService;
+
 
     @RequestMapping(value = "/moneyManager")
     public String moneyManager(HttpServletRequest request) throws Exception{
@@ -45,13 +51,22 @@ public class FeeController {
     }
 
     @RequestMapping(value = "/feeHistory")
-    public String feeHistory(HttpServletRequest request) throws Exception{
-        List<FeeDTO> fees = feeService.findAll();
-        request.setAttribute("fees", fees);
+    public String feeHistory(@RequestParam("id") int id, HttpServletRequest request) throws Exception{
+        List<PayDTO> pays = payService.findByFeeId(id);
+        FeeDTO fee = feeService.findById(id);
+
+        request.setAttribute("pays", pays);
+        request.setAttribute("fee", fee);
 
         return "moneyhistoryInquiry";
     }
 
+    @PostMapping(value = "/payRegister/{feeId}")
+    public String payRegister(@PathVariable int feeId, PayDTO pay, HttpServletRequest request) throws Exception{
+        pay.setFee_id(feeId);
+        payService.save(pay);
 
+        return "redirect:/feeHistory?id=" + feeId;
+    }
 
 }

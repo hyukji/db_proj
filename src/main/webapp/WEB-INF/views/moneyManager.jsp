@@ -74,7 +74,7 @@
 			<div class="row">
 				<div class="col-1 text-right">
 				  <!-- Trigger the modal with a button -->
-				  <a class="btn btn-info" href="feeHistory" role="button">열람</a>
+				  <a class="btn btn-info" href="feeHistory?id=<%= fee.getId() %>" role="button">열람</a>
 				
 				</div>
 				<div class="col-11 text-right">

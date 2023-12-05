@@ -5,7 +5,7 @@
 
 <mapper namespace="com.spring.boot.mapper.PayMapper">
 	<select id="findByFeeId" parameterType="int" resultType="com.spring.boot.dto.PayDTO">
-		SELECT p.id, p.fee_id, p.member_number, m.name as member_name, p.date
+		SELECT p.id, p.fee_id, p.member_number, m.name as member_name, p.price, p.etc, p.date
 		FROM pay p
 			INNER JOIN member m
 			ON p.member_number = m.number
@@ -19,8 +19,8 @@
 	</select>
 
 	<insert id="save" parameterType="com.spring.boot.dto.PayDTO">
-		INSERT INTO pay (fee_id, member_number, date)
-		VALUES (#{fee_id}, #{member_number}, #{date})
+		INSERT INTO pay (fee_id, member_number, price, etc)
+		VALUES (#{fee_id}, #{member_number}, #{price}, #{etc})
 	</insert>
 
 	<delete id="delete" parameterType="int">

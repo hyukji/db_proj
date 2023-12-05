@@ -36,4 +36,7 @@ public class FeeService {
         feeMapper.update(fee);
     }
 
+    public FeeDTO findById(int id) {
+        return feeMapper.findById(id);
+    }
 }

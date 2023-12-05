@@ -11,4 +11,6 @@ public interface FeeMapper {
     void save(FeeDTO fee);
     void delete(int id);
     void update(FeeDTO fee);
+
+    FeeDTO findById(int id);
 }
