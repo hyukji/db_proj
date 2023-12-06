@@ -40,9 +40,8 @@
 						설정
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
-						<a class="dropdown-item" href="#">계정관리</a>
-						<a class="dropdown-item" href="#">계정삭제</a>
-						<a class="dropdown-item" href="#">로그아웃</a>
+						<a class="dropdown-item" href="adminEdit">계정관리</a>
+						<a class="dropdown-item" href="logout">로그아웃</a>
 					</div>
 				</li>
 			</ul>

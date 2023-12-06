@@ -22,7 +22,7 @@ public class AdminService {
         adminMapper.save(admin);
     }
 
-    public void update(AdminDTO admin) {
-        adminMapper.update(admin);
+    public void update(String id, String password) {
+        adminMapper.update(id, password);
     }
 }

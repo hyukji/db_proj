@@ -16,9 +16,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	VALUES (#{id}, #{password})
 </insert>
 
-<update id="update" parameterType="com.spring.boot.dto.AdminDTO">
+<update id="update" parameterType="java.lang.String">
 	UPDATE admin
-	SET id = #{id}, password = #{password}
+	SET password = #{password}
 	WHERE id = #{id}
 </update>
 

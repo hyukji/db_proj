@@ -64,7 +64,11 @@ public class FeeController {
     @PostMapping(value = "/payRegister/{feeId}")
     public String payRegister(@PathVariable int feeId, PayDTO pay, HttpServletRequest request) throws Exception{
         pay.setFee_id(feeId);
-        payService.save(pay);
+        try {
+            payService.save(pay);
+        } catch (Exception e) {
+            return "error";
+        }
 
         return "redirect:/feeHistory?id=" + feeId;
     }

@@ -10,5 +10,5 @@ import java.util.List;
 public interface AdminMapper {
     AdminDTO find(AdminDTO admin);
     void save(AdminDTO admin);
-    void update(AdminDTO event);
+    void update(String id, String password);
 }

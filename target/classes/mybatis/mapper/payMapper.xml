@@ -12,10 +12,11 @@
 		WHERE fee_id = #{fee_id}
 	</select>
 
-	<select id="countByFeeId" parameterType="int" resultType="int">
-		SELECT count(*)
+	<select id="sumPayAmount" parameterType="int" resultType="int">
+		SELECT sum(price)
 		FROM pay
 		WHERE fee_id = #{fee_id}
+		GROUP BY fee_id
 	</select>
 
 	<insert id="save" parameterType="com.spring.boot.dto.PayDTO">

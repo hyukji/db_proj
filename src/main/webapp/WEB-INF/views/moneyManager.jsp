@@ -20,9 +20,9 @@
 	<script src="./js/jquery.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 	<script src="./js/popper.min.js"></script>
-	
+
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="main">동아리 관리 웹 <small> - 회비 관리</small></a>
+		<a class="navbar-brand" href="main">동아리 관리 웹</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -36,15 +36,14 @@
 				</li>
 				<li class="nav-item active">
 					<a class="nav-link" href="moneyManager">회비 관리</a>
-				</li> 
+				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">
 						설정
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown">
-						<a class="dropdown-item" href="#">계정관리</a>
-						<a class="dropdown-item" href="#">계정삭제</a>
-						<a class="dropdown-item" href="/">로그아웃</a>
+						<a class="dropdown-item" href="adminEdit">계정관리</a>
+						<a class="dropdown-item" href="logout">로그아웃</a>
 					</div>
 				</li>
 			</ul>
